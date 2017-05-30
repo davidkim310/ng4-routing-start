@@ -15,11 +15,15 @@ import { ServersService } from './servers/servers.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'users', component: UsersComponent }, //localhost:4200/users renders UsersComponent
+  { path: 'users', component: UsersComponent, children: [
+    { path: ':id/:name', component: UserComponent }
+  ] }, //localhost:4200/users renders UsersComponent
   // colon tells angular that this is the dynamic part of the path
-  { path: 'users/:id/:name', component: UserComponent },
-  { path: 'servers', component: ServersComponent }
-]
+  { path: 'servers', component: ServersComponent, children: [
+    { path: ':id', component: ServerComponent },
+    { path: ':id/edit', component: EditServerComponent}
+  ] } 
+];
 
 @NgModule({
   declarations: [

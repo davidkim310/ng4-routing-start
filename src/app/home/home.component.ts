@@ -14,8 +14,8 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 //lets load a different component here
-  onLoadServers() {
+  onLoadServers(id: number) {
     //navigate takes an argument that points to a new route. takes in an array
-    this.router.navigate(['/servers'])
+    this.router.navigate(['/servers', id, 'edit'], {queryParams: {allowEdit: '1'}, fragment: 'loading'})
   }
 }

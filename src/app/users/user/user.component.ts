@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs/Subscription';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit, OnDestroy {
+export class UserComponent implements OnInit {
   user: {id: number, name: string};
   paramsSubscription: Subscription;
 
@@ -30,8 +30,8 @@ export class UserComponent implements OnInit, OnDestroy {
       );
   }
   //we do not want to keep our subscription in memory
-  ngOnDestroy() {
-    this.paramsSubscription.unsubscribe()
-  }
+  // ngOnDestroy() {
+  //   this.paramsSubscription.unsubscribe()
+  // }
 
 }
