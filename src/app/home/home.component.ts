@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 //must import Router from angular/router to access other components
 import { Router } from '@angular/router';
+import { AuthService } from'../auth.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 //we can use router only with this injection
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -17,5 +18,13 @@ export class HomeComponent implements OnInit {
   onLoadServers(id: number) {
     //navigate takes an argument that points to a new route. takes in an array
     this.router.navigate(['/servers', id, 'edit'], {queryParams: {allowEdit: '1'}, fragment: 'loading'})
+  }
+
+  onLogin() {
+    this.authService.login();
+  }
+
+  onLogout() {
+    this.authService.logoff();
   }
 }
